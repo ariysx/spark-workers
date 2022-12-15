@@ -9,12 +9,12 @@
     {
       "autoDelete": true,
       "boot": true,
-      "deviceName": "slave1",
+      "deviceName": "lab6-worker-1",
       "initializeParams": {
         "diskSizeGb": "10",
-        "diskType": "projects/spark-371009/zones/us-west4-b/diskTypes/pd-balanced",
+        "diskType": "projects/red-shape-366901/zones/europe-west1-b/diskTypes/pd-balanced",
         "labels": {},
-        "sourceImage": "projects/debian-cloud/global/images/debian-11-bullseye-v20221102"
+        "sourceImage": "projects/debian-cloud/global/images/debian-11-bullseye-v20221206"
       },
       "mode": "READ_WRITE",
       "type": "PERSISTENT"
@@ -26,16 +26,20 @@
   "guestAccelerators": [],
   "keyRevocationActionType": "STOP",
   "labels": {},
-  "machineType": "projects/spark-371009/zones/europe-west1-b/machineTypes/e2-medium",
+  "machineType": "projects/red-shape-366901/zones/europe-west1-b/machineTypes/e2-medium",
   "metadata": {
     "items": [
       {
         "key": "startup-script",
-        "value": "apt update\ncurl --output spark.tgz https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz\napt -y install default-jdk\ntar -xzvf spark.tgz\n./spark-3.3.1-bin-hadoop3/sbin/start-slave.sh spark://spark-master.europe-west1-b.c.spark-371009.internal:7077"
+        "value": "apt update\ncurl --output spark.tgz https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz\napt -y install default-jdk\ntar -xzvf spark.tgz\n/spark-3.3.1-bin-hadoop3/sbin/start-worker.sh spark://lab6-spark-master.europe-west1-b.c.red-shape-366901.internal:7077"
+      },
+      {
+        "key": "ssh-keys",
+        "value": "chakkarin_lks:ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOK+vxapoxmww2RnOleobjCxwoPVzoLd9qzZs5XU+YiiYqTK/kOh1xMnuNVxeJJAkg4tPYCdf/mTcFduiFZbs+E= google-ssh {\"userName\":\"chakkarin.lks@gmail.com\",\"expireOn\":\"2022-12-15T06:45:51+0000\"}\nchakkarin_lks:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAHow6eeGx/XdlGiqZS9cv/HqtV8W1zcpqHhcDeTU33f6+PPR1p/JWGCJVYzLnGJvLvfUmrdtSPRPATSnaGIIGhSodV61y5JLlkN3kll6XkZ2K9rR+uVkORQLc1ep9ihlblMemKL0uuO1dd+wHCvbDtocp/eIkiBTMtpqMdbFM8spgPRM0BXAd/vLCbDlMe+AOT2NfCSNGhpckMWtxoCJhBo1SjFL3i+Vp6ybLQAyox3fq9pOFMQBfcq1KlNx7DreNhaQJ2agGsKX4ZRh5ojh8nq3WGV8YTHVWMreAt8ymgJiUnjuOAkEPgq0HDfWvzHXDsMJswN1fCsSWZJB4UrwkSM= google-ssh {\"userName\":\"chakkarin.lks@gmail.com\",\"expireOn\":\"2022-12-15T06:46:05+0000\"}"
       }
     ]
   },
-  "name": "slave1",
+  "name": "lab6-worker-2",
   "networkInterfaces": [
     {
       "accessConfigs": [
@@ -45,7 +49,7 @@
         }
       ],
       "stackType": "IPV4_ONLY",
-      "subnetwork": "projects/spark-371009/regions/europe-west1/subnetworks/default"
+      "subnetwork": "projects/red-shape-366901/regions/europe-west1/subnetworks/default"
     }
   ],
   "reservationAffinity": {
@@ -55,11 +59,12 @@
     "automaticRestart": false,
     "instanceTerminationAction": "STOP",
     "onHostMaintenance": "TERMINATE",
+    "preemptible": true,
     "provisioningModel": "SPOT"
   },
   "serviceAccounts": [
     {
-      "email": "569439294570-compute@developer.gserviceaccount.com",
+      "email": "355743431224-compute@developer.gserviceaccount.com",
       "scopes": [
         "https://www.googleapis.com/auth/devstorage.read_only",
         "https://www.googleapis.com/auth/logging.write",
@@ -76,7 +81,10 @@
     "enableVtpm": true
   },
   "tags": {
-    "items": []
+    "items": [
+      "http-server",
+      "https-server"
+    ]
   },
-  "zone": "projects/spark-371009/zones/europe-west1-b"
+  "zone": "projects/red-shape-366901/zones/europe-west1-b"
 }
