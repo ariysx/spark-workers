@@ -1,3 +1,4 @@
+POST https://www.googleapis.com/compute/v1/projects/red-shape-366901/zones/europe-west1-b/instances
 {
   "canIpForward": false,
   "confidentialInstanceConfig": {
@@ -39,7 +40,7 @@
       }
     ]
   },
-  "name": "lab6-worker-2",
+  "name": "lab6-worker-4",
   "networkInterfaces": [
     {
       "accessConfigs": [
@@ -52,6 +53,9 @@
       "subnetwork": "projects/red-shape-366901/regions/europe-west1/subnetworks/default"
     }
   ],
+  "params": {
+    "resourceManagerTags": {}
+  },
   "reservationAffinity": {
     "consumeReservationType": "ANY_RESERVATION"
   },
